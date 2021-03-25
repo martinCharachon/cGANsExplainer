@@ -1,0 +1,5 @@
+{
+  "model_json_path": "./mnist/reference_models/classifier/model.json",
+  "weights_h5_path": "./mnist/reference_models/classifier/weights.21-2020-12-08_09-04-41.hdf5",
+  "model_h5_path": null
+}

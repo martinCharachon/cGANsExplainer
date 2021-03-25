@@ -1,0 +1,10 @@
+{
+  "db_path": "./mnist/database/mnist_3_8.h5",
+  "split_path": "./mnist/split/split_mnist_3_8.json",
+  "vae_model_path": "./mnist/reference_models/vae/encoder_57.hdf5",
+  "pred_access": "/x_real/prediction",
+  "label_access": "/x_real/label",
+  "name_list": ["x_real", "x_ours_a", "x_ours_st", "x_cyc_a", "x_mg_a", "x_sa_a", "x_sa_st"],
+  "interpretation_path": "./mnist/interpreter_outputs/multi_methods/multi_generation_saved.h5",
+  "embeddings_path": "./mnist/embeddings_outputs/multi_generation_embeddings.h5"
+}

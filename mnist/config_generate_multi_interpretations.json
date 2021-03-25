@@ -1,0 +1,42 @@
+{
+  "gen_0_settings": {
+    "model_h5_path": "./mnist/reference_models/interpreter/SyCE/generator_0_46.hdf5"
+  },
+  "gen_1_settings": {
+    "model_h5_path": "./mnist/reference_models/interpreter/SyCE/generator_1_46.hdf5"
+  },
+  "gen_0_cycgan_settings": {
+    "model_h5_path": "./mnist/reference_models/interpreter/CyCE/cyc_generator_01.hdf5"
+  },
+  "gen_1_cycgan_settings": {
+    "model_h5_path": "./mnist/reference_models/interpreter/CyCE/cyc_generator_10.hdf5"
+  },
+  "gen_sa_settings": {
+    "model_h5_path": "./mnist/reference_models/interpreter/others/sagen.hdf5"
+  },
+  "gen_mg_settings": {
+    "model_h5_path": "./mnist/reference_models/interpreter/others/mgen.hdf5"
+  },
+  "perturbation_params":{
+     "sigma": 20
+  },
+  "image_activation": {
+    "type": "clip",
+    "parameters": {
+    }
+  },
+  "image_activation_cycgan": {
+    "type": "clip",
+    "parameters": {
+    }
+  },
+  "image_activation_sa": {
+    "type": "clip",
+    "parameters": {
+    }
+  },
+  "db_path": "./mnist/database/mnist_3_8.h5",
+  "split_path": "./mnist/split/split_mnist_3_8.json",
+  "experiment_dir": "./mnist/interpreter_outputs",
+  "explanation_file_base_name": "multi_generation"
+}

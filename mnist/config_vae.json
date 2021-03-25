@@ -1,0 +1,109 @@
+{
+  "model_configuration": {
+    "input_shape": [1, 28, 28],
+    "model_path": {},
+    "image_activation": {
+        "type": "clip",
+        "parameters": {}
+    },
+    "config": {
+      "vae-encoder": {
+        "parameters": {
+          "nb_filters": [16, 32, 64],
+          "encoded_dimension": 100,
+          "encoding_method": "GlobalAveragePooling2D + Dense",
+          "downsampling_type": "Conv2D",
+          "nb_convolution_block_down": 1,
+          "use_context": true,
+          "context_dropout": null,
+          "kernel_size": 3,
+          "activation": "relu",
+          "normalization_type": null,
+          "convolution_dropout_down": 0.1,
+          "dropout_type": "Dropout"
+        }
+      },
+      "decoder": {
+        "parameters": {
+          "nb_filters": [16, 32, 64],
+          "upsampling_type": "Conv2DTranspose",
+          "final_convolution_layer": "Conv2DTranspose",
+          "final_layer_activation": null,
+          "final_convolution_block_filters": null,
+          "nb_convolution_block_up": 1,
+          "use_context": true,
+          "context_dropout": null,
+          "kernel_size": 3,
+          "activation": "relu",
+          "normalization_type": null,
+          "convolution_dropout_up": 0.1,
+          "dropout_type": "Dropout"
+        }
+      }
+    }
+  },
+  "training_configuration": {
+    "ground_truth_type": 2,
+    "batch_size": 32,
+    "epochs": 60,
+    "generator_seed": 0,
+    "geometric_preprocessor_training": {
+      "name": "AugmentationPreprocessor2D",
+      "parameters": {
+          "rotation_range": 5,
+          "height_shift_range": 0,
+          "width_shift_range": 0,
+          "shear_range": 0,
+          "zoom_range": [0.8, 1],
+          "horizontal_flip": false,
+          "vertical_flip": true,
+          "interpolation": "nearest",
+          "rescaling_method": "min_max"
+      }
+    },
+    "geometric_preprocessor_validation": {
+      "name": "BasicPreprocessor2D",
+      "parameters": {
+          "interpolation": "nearest",
+          "rescaling_method": "min_max"
+      }
+    },
+    "loss": {
+      "model_threshold": 0.5,
+      "kl": {
+        "parameters": {
+          "coefficient": 5.0,
+          "loss_type": "kl_divergence"
+        }
+      },
+      "classification": {
+        "parameters": {
+          "loss_type": "bce_loss",
+          "coefficient": 0.1
+        }
+      },
+      "reconstruction": {
+        "parameters": {
+          "coefficient": 1.0,
+          "loss_type": "mse_loss"
+        }
+      }
+    },
+    "optimizer": {
+      "generator": {
+        "name": "Adam",
+        "learning_rate": 0.0001
+      }
+    },
+    "call_backs": {
+      "ReduceLROnPlateau": {
+        "factor": 0.3,
+        "patience": 4,
+        "min_lr": 1e-5
+      }
+    },
+    "outputs_directory": "./mnist/training_outputs/vae"
+  },
+  "db_path": "./mnist/database/mnist_3_8.h5",
+  "split_path": "./mnist/split/split_mnist_3_8.json"
+}

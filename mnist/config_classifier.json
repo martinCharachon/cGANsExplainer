@@ -1,0 +1,76 @@
+{
+  "model_configuration": {
+    "input_shape": [1, 28, 28],
+    "name": "lenet",
+    "config": {
+            "output_size": 1,
+            "nb_filters": [64, 64],
+            "final_activation": "sigmoid",
+            "kernel_size": 3,
+            "activation": "relu",
+            "data_format": "channels_first"
+    }
+  },
+  "training_configuration": {
+    "batch_size": 64,
+    "epochs": 50,
+    "generator_seed": 0,
+    "geometric_preprocessor_training": {
+      "name": "AugmentationPreprocessor2D",
+      "parameters": {
+        "rotation_range": 5,
+        "height_shift_range": 0,
+        "width_shift_range": 0,
+        "shear_range": 0.01,
+        "zoom_range": [0.75, 1],
+        "horizontal_flip": false,
+        "vertical_flip": true,
+        "interpolation": "nearest",
+        "rescaling_method": "min_max"
+      }
+    },
+    "geometric_preprocessor_validation": {
+      "name": "BasicPreprocessor2D",
+      "parameters": {
+        "interpolation": "nearest",
+        "rescaling_method": "min_max"
+      }
+    },
+    "start_resource": 0,
+    "loss": {
+      "classification": {
+        "parameters": {
+          "loss_type":  "bce_loss"
+        }
+      }
+    },
+    "optimizer": {
+      "name": "Adam",
+      "learning_rate": 0.0001
+    },
+    "call_backs": {
+      "CSVLogger": {
+        "append": true,
+        "filename": "",
+        "separator": ";"
+      },
+      "ModelCheckpoint": {
+        "filepath": "",
+        "save_best_only": true,
+        "verbose": 0
+      },
+      "ReduceLROnPlateau": {
+        "factor": 0.3,
+        "min_lr": 1e-05,
+        "monitor": "val_loss",
+        "patience": 3,
+        "verbose": 1
+      },
+      "TerminateOnNaN": {}
+    },
+    "verbose": 1,
+    "outputs_directory": "./mnist/training_outputs/classifier"
+  },
+  "db_path": "./mnist/database/mnist_3_8.h5",
+  "split_path": "./mnist/split/split_mnist_3_8.json"
+}

@@ -1,0 +1,19 @@
+{
+  "image_activation": {
+      "type": "clip",
+      "parameters": {}
+  },
+  "GT type": null,
+  "explanation_def": "st - adv",
+  "gen_0_settings": {
+    "model_h5_path": "./mnist/reference_models/interpreter/SyCE/generator_0_46.hdf5"
+  },
+  "gen_1_settings": {
+    "model_h5_path": "./mnist/reference_models/interpreter/SyCE/generator_1_46.hdf5"
+  },
+  "db_path": "./mnist/database/mnist_3_8.h5",
+  "split_path": "./mnist/split/split_mnist_3_8.json",
+  "experiment_dir": "./mnist/interpreter_outputs",
+  "explanation_file_base_name": "explanation_st_adv",
+  "run_evaluation": false
+}
